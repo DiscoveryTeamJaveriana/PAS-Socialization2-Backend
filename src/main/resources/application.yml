@@ -1,6 +1,22 @@
 server:
   port: 10016
 
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:10017/despachos_db
+    username: despachos_db
+    password: despachos_db
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: DespachosHikariPool
+      connection-test-query: select 1
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+
 providers:
   tcc:
     url: http://localhost:10018/
