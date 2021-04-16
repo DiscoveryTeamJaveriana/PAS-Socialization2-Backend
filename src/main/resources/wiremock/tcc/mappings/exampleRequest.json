@@ -1,0 +1,16 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPattern": "/getPrice",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.SomeObject[?(@.someValue == '777')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "response/exampleResponse.json"
+  }
+}

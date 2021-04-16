@@ -1,0 +1,20 @@
+server:
+  port: 10016
+
+providers:
+  tcc:
+    url: http://localhost:10018/
+  coordinadora:
+    url: http://localhost:10019/
+
+mocks:
+  enabled: false
+  services:
+    tcc:
+      enabled: false
+      port: 10018
+      resources-path: wiremock/tcc
+    coordinadora:
+      enabled: false
+      port: 10019
+      resources-path: wiremock/coordinadora

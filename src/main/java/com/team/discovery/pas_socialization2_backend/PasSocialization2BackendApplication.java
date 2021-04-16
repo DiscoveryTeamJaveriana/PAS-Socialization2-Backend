@@ -1,4 +1,4 @@
-package com.team.discovery.PASSocialization2Backend;
+package com.team.discovery.pas_socialization2_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
