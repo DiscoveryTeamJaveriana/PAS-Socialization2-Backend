@@ -1,8 +1,4 @@
 # Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.team.discovery.PAS-Socialization2-Backend' is invalid and this project uses 'com.team.discovery.PASSocialization2Backend' instead.
-
 # Getting Started
 
 ### Reference Documentation
