@@ -34,3 +34,6 @@ mocks:
       enabled: false
       port: 10019
       resources-path: wiremock/coordinadora
+
+cron:
+  pending_shipping: "*/5 * * * * *"
