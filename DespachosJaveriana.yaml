@@ -185,9 +185,9 @@ definitions:
       direccion:
         type: "string"
       id:
-        type: "string"
+        type: "integer"
       idRol:
-        type: "string"
+        type: "integer"
       nombreUsuario:
         type: "string"
       nombres:
