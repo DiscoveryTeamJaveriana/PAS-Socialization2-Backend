@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:10017/despachos_db
-    username: despachos_db
-    password: despachos_db
+    username: discoveryteam
+    password: discoveryteam
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
