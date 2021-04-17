@@ -1,0 +1,229 @@
+swagger: "2.0"
+info:
+  description: "Despachos Farmacéutica la Javeniana"
+  version: "1.0.0"
+  title: "Despachos Farmacéutica la Javeniana"
+basePath: "/javeriana"
+tags:
+- name: "Usuarios"
+  description: "Inscripcion y consulta de usuarios"
+- name: "Proveedor"
+  description: "Consultar y cotizar despachos"
+- name: "Cliente"
+  description: "Consultar y aprobar despachos"
+schemes:
+- "https"
+- "http"
+paths:
+  /Usuario:
+    post:
+      tags:
+      - "Usuarios"
+      summary: "Crea un usuario en BD"
+      operationId: "crearUsuario"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "bodyPostUsuarios"
+        description: "Crea un usuario en BD"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
+      responses:
+        "201":
+          description: "Creado"
+        "500":
+          description: "Error en la creación"
+  /Usuario/{NombreUsuario}:
+    get:
+      tags:
+      - "Usuarios"
+      summary: "Consulta un usuario en BD"
+      operationId: "consultarUsuario"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "NombreUsuario"
+        type: "string"
+        required: true
+      responses:
+        "200":
+          description: "Consulta exitosa"
+          schema:
+            $ref: '#/definitions/Usuario'
+        "404":
+          description: "Usuario no encontrado"
+  /DespachoProveedor:
+    get:
+      tags:
+      - "Proveedor"
+      summary: "Consulta los despachos disponibles en BD"
+      operationId: "consultarDespachoProveedor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Consulta exitosa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Despacho"
+        "404":
+          description: "Despachos no encontrados"
+  /DespachoProveedor/{Id}:
+    post:
+      tags:
+      - "Proveedor"
+      summary: "Cotizar un despacho disponible"
+      operationId: "cotizarDespacho"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "Id"
+        type: "integer"
+        required: true
+      - in: "body"
+        name: "bodyPostDespachoProveedor"
+        description: "Cotizar un despacho disponible"
+        required: true
+        schema:
+          $ref: "#/definitions/Cotizar"
+      responses:
+        "201":
+          description: "Creado"
+        "500":
+          description: "Error en la cotización"
+  /DespachoCliente/{IdUsuarioDestino}:
+    get:
+      tags:
+      - "Cliente"
+      summary: "Consulta los despachos disponibles en BD"
+      operationId: "consultarDespachoCliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "IdUsuarioDestino"
+        type: "integer"
+        required: true
+      responses:
+        "200":
+          description: "Consulta exitosa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Despacho"
+        "404":
+          description: "Despachos no encontrados"
+  /DespachoCliente:
+    post:
+      tags:
+      - "Cliente"
+      summary: "Aprueba los despachos disponibles en BD"
+      operationId: "aprobarDespachoCliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "bodyPostDespachoCliente"
+        description: "Cotizar un despacho disponible"
+        required: true
+        schema:
+          $ref: "#/definitions/Aprobar"
+      responses:
+        "201":
+          description: "Aprobado"
+        "500":
+          description: "Error en la aprobacion"
+  /DespachoClienteHistorico/{Id}:
+    get:
+      tags:
+      - "Cliente"
+      summary: "Consulta los despachos finalizados en BD"
+      operationId: "historicoDespachoCliente"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "Id"
+        type: "integer"
+        required: true
+      responses:
+        "200":
+          description: "Consulta exitosa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Despacho"
+        "500":
+          description: "Error en la consulta"
+definitions:
+  Usuario:
+    type: "object"
+    properties:
+      apellidos:
+        type: "string"
+      correo:
+        type: "string"
+      direccion:
+        type: "string"
+      id:
+        type: "string"
+      idRol:
+        type: "string"
+      nombreUsuario:
+        type: "string"
+      nombres:
+        type: "string"
+      telefono:
+        type: "string"
+      contraseña:
+        type: "string"
+  Despacho:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      cantidadCajas:
+        type: "integer"
+      pesoTotal:
+        type: "integer"
+      idEstado:
+        type: "integer"
+      idUsuarioDestino:
+        type: "integer"
+      mejorOferta:
+        type: "integer"
+      transportadora:
+        type: "string"
+  Cotizar:
+    type: "object"
+    properties:
+      idUsuarioTransporte:
+        type: "integer"
+      oferta:
+        type: "integer"
+  Aprobar:
+    type: "object"
+    properties:
+      idDespacho:
+        type: "integer"
+      aprobado:
+        type: "boolean"
