@@ -25,7 +25,7 @@ then
   docker exec -i DiscoveryTeamPostgreSQL sh -c "psql -U postgres -c \"CREATE ROLE discoveryteam LOGIN ENCRYPTED PASSWORD 'md5d4f1d655da05630f09a1353d24b6d334' NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION;\""
   docker exec -i DiscoveryTeamPostgreSQL sh -c "psql -U postgres -c \"CREATE ROLE grafana LOGIN ENCRYPTED PASSWORD 'md5e35d7a9d4e6d9d8ce3ab308b40ecbf76' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;\""
   docker exec -i DiscoveryTeamPostgreSQL sh -c "psql -U postgres -c \"CREATE DATABASE despachos_db WITH ENCODING='UTF8' OWNER=discoveryteam CONNECTION LIMIT=-1 TABLESPACE=pg_default;\""
-  docker exec -i DiscoveryTeamPostgreSQL sh -c 'pg_restore -U postgres --dbname=despachos_db' < "${PWD}/despachos_db.sql"
+  docker exec -i DiscoveryTeamPostgreSQL sh -c 'psql -U postgres --d despachos_db' < "${PWD}/despachos_db.sql"
 else
   echo "Database already exists"
 fi
