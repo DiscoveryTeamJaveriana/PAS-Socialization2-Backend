@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,19 +19,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Shipping {
 
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "cantidadCajas", nullable = false)
-    private Integer boxesAmount;
+    @Column(name = "cantidadCajas")
+    private Long boxesAmount;
 
-    @Column(name = "pesoTotal", nullable = false)
+    @Column(name = "pesoTotal")
     private Integer totalWeight;
 
-    @Column(name = "idEstado", nullable = false)
+    @Column(name = "estado")
     @Enumerated(EnumType.STRING)
     private State state;
 

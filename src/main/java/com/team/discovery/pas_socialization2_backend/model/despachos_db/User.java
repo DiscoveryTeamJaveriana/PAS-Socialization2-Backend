@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,11 +17,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "nombres")
     private String name;
@@ -38,9 +40,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @Column(name = "nombreUsuario")
+    @Column(name = "nombreusuario")
     private String userName;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String password;
+
+    @Column(name = "correo")
+    private String email;
 }
