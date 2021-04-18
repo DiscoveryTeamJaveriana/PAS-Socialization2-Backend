@@ -27,7 +27,7 @@ mocks:
   enabled: true
   services:
     tcc:
-      enabled: false
+      enabled: true
       port: 10018
       resources-path: wiremock/tcc
     coordinadora:
