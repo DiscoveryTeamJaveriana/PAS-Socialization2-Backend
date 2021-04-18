@@ -25,7 +25,7 @@ public class ScheduledPendingShippingQuery {
     public void getPendingShipping(){
         log.info("Starting cron pending_shipping");
         List<Shipping> shippingList = shippingService.getShippingByStatus(State.DESPACHO_CARGADO);
-        if (!shippingList.isEmpty() && shippingList.size()>0) {
+        if (!shippingList.isEmpty()) {
             shippingService.processPendingShipping(shippingList);
         }
         log.info("Finishing cron pending_shipping");
