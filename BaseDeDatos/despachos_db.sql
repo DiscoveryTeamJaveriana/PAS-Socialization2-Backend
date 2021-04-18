@@ -43,6 +43,8 @@ CREATE TABLE despachos.despacho
     peso_total numeric,
     estado character varying(20) COLLATE pg_catalog."default",
     id_usuario_destino bigint,
+    mejor_oferta bigint,
+    transportadora character varying(20) COLLATE pg_catalog."default",
     CONSTRAINT despacho_pkey PRIMARY KEY (id),
     CONSTRAINT id_usuario_destino FOREIGN KEY (id_usuario_destino)
         REFERENCES despachos.usuario (id) MATCH SIMPLE

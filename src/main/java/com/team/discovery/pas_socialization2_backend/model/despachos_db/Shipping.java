@@ -39,6 +39,12 @@ public class Shipping {
     @Enumerated(EnumType.STRING)
     private State state;
 
+    @Column(name = "mejor_oferta")
+    private Long bestOffer;
+
+    @Column(name = "transportadora")
+    private String dispatcher;
+
     @OneToOne
     @JoinColumn(name = "id_usuario_destino", referencedColumnName = "id")
     private User user;
