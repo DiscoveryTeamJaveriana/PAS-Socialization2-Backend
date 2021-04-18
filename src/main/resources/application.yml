@@ -24,14 +24,14 @@ providers:
     url: http://localhost:10019/
 
 mocks:
-  enabled: false
+  enabled: true
   services:
     tcc:
       enabled: false
       port: 10018
       resources-path: wiremock/tcc
     coordinadora:
-      enabled: false
+      enabled: true
       port: 10019
       resources-path: wiremock/coordinadora
 
