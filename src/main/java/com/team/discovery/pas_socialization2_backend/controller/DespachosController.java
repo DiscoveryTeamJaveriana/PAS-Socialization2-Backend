@@ -38,7 +38,7 @@ public class DespachosController {
 
 
     @PostMapping("/Usuario")
-    public ResponseEntity<String> createUser(@RequestBody final Usuario requestUsuario) {
+    public ResponseEntity<Void> createUser(@RequestBody final Usuario requestUsuario) {
         log.info("Creating User for Id {}", requestUsuario.getId());
         userService.createUser(requestUsuario);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -64,20 +64,20 @@ public class DespachosController {
     }
 
     @GetMapping("/DespachoCliente/{idUsuarioDestino}")
-    public ResponseEntity<List<Despacho>> searchDispatchClient(@PathVariable int idUsuarioDestino) {
+    public ResponseEntity<List> searchDispatchClient(@PathVariable int idUsuarioDestino) {
         log.info("Search available dispatch for User ID {}", idUsuarioDestino);
         return new ResponseEntity<>(clientService.searchDispatchClient(idUsuarioDestino),HttpStatus.OK);
     }
 
     @PostMapping("/DespachoCliente")
-    public ResponseEntity<String> approveDispatch(@RequestBody final Aprobar requestAprobar) {
+    public ResponseEntity<Void> approveDispatch(@RequestBody final Aprobar requestAprobar) {
         log.info("Approve for Id dispatch {}", requestAprobar.getIdDespacho());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.approveDispatch(requestAprobar),HttpStatus.OK);
     }
 
     @GetMapping("/DespachoClienteHistorico/{id}")
-    public ResponseEntity<String> searchHistoricalDispatch(@PathVariable int id) {
+    public ResponseEntity<List> searchHistoricalDispatch(@PathVariable int id) {
         log.info("Search historical dispatch for User ID {}", id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.searchHistoricalDispatch(id),HttpStatus.OK);
     }
 }
