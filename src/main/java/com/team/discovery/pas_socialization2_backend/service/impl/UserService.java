@@ -14,12 +14,12 @@ public class UserService implements IUserService {
 
     private UserRepository userRepository;
 
-    public UserService (UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public void  createUser(Usuario requestUsuario) {
+    public void createUser(Usuario requestUsuario) {
 
         User user = User.builder().id(requestUsuario.getId().longValue()).name(requestUsuario.getNombres())
                 .lastName(requestUsuario.getApellidos()).address(requestUsuario.getDireccion()).phone(requestUsuario.getTelefono())
@@ -34,24 +34,27 @@ public class UserService implements IUserService {
 
         User user = userRepository.findUsersByUserName(nombreUsuario);
         Usuario usuarioFinal = new Usuario();
-
-        usuarioFinal.setApellidos(user.getLastName());
-        usuarioFinal.setCorreo(user.getEmail());
-        usuarioFinal.setDireccion(user.getAddress());
-        usuarioFinal.setId(user.getId().intValue());
-        usuarioFinal.setIdRol(getRolID(user.getRol()));
-        usuarioFinal.setNombreUsuario(user.getUserName());
-        usuarioFinal.setNombres(user.getName());
-        usuarioFinal.setTelefono(user.getPhone());
-        usuarioFinal.setContrasea(user.getPassword());
-        return usuarioFinal ;
+        if (user != null) {
+            usuarioFinal.setApellidos(user.getLastName());
+            usuarioFinal.setCorreo(user.getEmail());
+            usuarioFinal.setDireccion(user.getAddress());
+            usuarioFinal.setId(user.getId().intValue());
+            usuarioFinal.setIdRol(getRolID(user.getRol()));
+            usuarioFinal.setNombreUsuario(user.getUserName());
+            usuarioFinal.setNombres(user.getName());
+            usuarioFinal.setTelefono(user.getPhone());
+            usuarioFinal.setContrasea(user.getPassword());
+        } else {
+            log.info("Usuario no Existe");
+        }
+        return usuarioFinal;
     }
 
-    public Rol getRolEnum (int id) {
-        switch (id){
-            case 2 :
+    public Rol getRolEnum(int id) {
+        switch (id) {
+            case 2:
                 return Rol.CLIENT;
-            case 3 :
+            case 3:
                 return Rol.SHIPPER;
             default:
                 return Rol.ADMINISTRATOR;
@@ -59,8 +62,8 @@ public class UserService implements IUserService {
 
     }
 
-    public int getRolID (Rol rolEnum) {
-        switch (rolEnum){
+    public int getRolID(Rol rolEnum) {
+        switch (rolEnum) {
             case CLIENT:
                 return 2;
             case SHIPPER:
