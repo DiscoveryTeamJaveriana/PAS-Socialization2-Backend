@@ -4,7 +4,11 @@ import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Despacho;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.Offer;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.Shipping;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.User;
+import com.team.discovery.pas_socialization2_backend.repository.OfferRepository;
 import com.team.discovery.pas_socialization2_backend.service.IClientService;
 import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import com.team.discovery.pas_socialization2_backend.service.IUserService;
@@ -26,7 +30,7 @@ public class DespachosController {
     private IClientService clientService;
 
     @Autowired
-    public DespachosController(IUserService userService, IDispatchService dispatchService,IClientService clientService ) {
+    public DespachosController(IUserService userService, IDispatchService dispatchService, IClientService clientService) {
         this.userService = userService;
         this.dispatchService = dispatchService;
         this.clientService = clientService;
@@ -53,8 +57,9 @@ public class DespachosController {
     }
 
     @PostMapping("/DespachoProveedor/{id}")
-    public ResponseEntity<String> quote(@PathVariable int id, @RequestBody Cotizar requestCotizar) {
+    public ResponseEntity<String> quote(@PathVariable long id, @RequestBody Cotizar requestCotizar) {
         log.info("Quote for Id dispatch {}", id);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
