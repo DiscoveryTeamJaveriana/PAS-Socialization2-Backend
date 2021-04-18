@@ -2,7 +2,9 @@ package com.team.discovery.pas_socialization2_backend.controller;
 
 import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
+import com.team.discovery.pas_socialization2_backend.controller.model.Despacho;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
+import com.team.discovery.pas_socialization2_backend.service.IClientService;
 import com.team.discovery.pas_socialization2_backend.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/javeriana")
 public class DespachosController {
 
     private IUserService userService;
+    private IClientService clientService;
 
     @Autowired
-    public DespachosController(IUserService userService) {
+    public DespachosController(IUserService userService, IClientService clientService ) {
         this.userService = userService;
+        this.clientService = clientService;
     }
 
 
@@ -49,9 +55,9 @@ public class DespachosController {
     }
 
     @GetMapping("/DespachoCliente/{idUsuarioDestino}")
-    public ResponseEntity<String> searchDispatchClient(@PathVariable int idUsuarioDestino) {
+    public ResponseEntity<List<Despacho>> searchDispatchClient(@PathVariable int idUsuarioDestino) {
         log.info("Search available dispatch for User ID {}", idUsuarioDestino);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.searchDispatchClient(idUsuarioDestino),HttpStatus.OK);
     }
 
     @PostMapping("/DespachoCliente")
