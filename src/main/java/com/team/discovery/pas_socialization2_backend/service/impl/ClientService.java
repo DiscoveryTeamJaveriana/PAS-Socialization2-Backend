@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -54,6 +55,14 @@ public class ClientService implements IClientService {
 
     @Override
     public Void approveDispatch(Aprobar requestAprobar) {
+        Shipping shipping;
+
+        if (requestAprobar.getAprobado()){
+            Optional<Shipping> shippingOptional = shippingRepository.findById(requestAprobar.getIdDespacho().longValue());
+            shipping = shippingOptional.get();
+            shipping.setState(State.DESPACHO_APROBADO);
+            shippingRepository.save(shipping);
+        }
         return null;
     }
 

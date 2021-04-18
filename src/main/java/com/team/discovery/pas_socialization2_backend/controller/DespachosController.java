@@ -34,7 +34,7 @@ public class DespachosController {
 
 
     @PostMapping("/Usuario")
-    public ResponseEntity<String> createUser(@RequestBody final Usuario requestUsuario) {
+    public ResponseEntity<Void> createUser(@RequestBody final Usuario requestUsuario) {
         log.info("Creating User for Id {}", requestUsuario.getId());
         userService.createUser(requestUsuario);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -65,9 +65,9 @@ public class DespachosController {
     }
 
     @PostMapping("/DespachoCliente")
-    public ResponseEntity<String> approveDispatch(@RequestBody final Aprobar requestAprobar) {
+    public ResponseEntity<Void> approveDispatch(@RequestBody final Aprobar requestAprobar) {
         log.info("Approve for Id dispatch {}", requestAprobar.getIdDespacho());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.approveDispatch(requestAprobar),HttpStatus.OK);
     }
 
     @GetMapping("/DespachoClienteHistorico/{id}")
