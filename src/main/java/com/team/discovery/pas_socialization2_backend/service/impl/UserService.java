@@ -34,14 +34,19 @@ public UserService (UserRepository userRepository) {
     User user = userRepository.findUsersByUserName(nombreUsuario);
     Usuario usuarioFinal = new Usuario();
 
-    usuarioFinal.setApellidos(user.getLastName());
-    usuarioFinal.setCorreo(user.getEmail());
-    usuarioFinal.setContrasea(user.getPassword());
-    usuarioFinal.setNombreUsuario(user.getUserName());
-    usuarioFinal.setDireccion(user.getAddress());
-    usuarioFinal.setId(user.getId().intValue());
-    usuarioFinal.setNombres(user.getName());
-    usuarioFinal.setTelefono(user.getPhone());
-    return usuarioFinal ;
+    if(user != null){
+        usuarioFinal.setApellidos(user.getLastName());
+        usuarioFinal.setCorreo(user.getEmail());
+        usuarioFinal.setContrasea(user.getPassword());
+        usuarioFinal.setNombreUsuario(user.getUserName());
+        usuarioFinal.setDireccion(user.getAddress());
+        usuarioFinal.setId(user.getId().intValue());
+        usuarioFinal.setNombres(user.getName());
+        usuarioFinal.setTelefono(user.getPhone());
+    }else{
+        log.info("Usuario no Existe");
+    }
+
+    return usuarioFinal;
     }
 }
