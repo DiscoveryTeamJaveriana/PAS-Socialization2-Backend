@@ -12,41 +12,62 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
-private UserRepository userRepository;
+    private UserRepository userRepository;
 
-public UserService (UserRepository userRepository) {
-    this.userRepository = userRepository;
-}
+    public UserService (UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void  createUser(Usuario requestUsuario) {
 
         User user = User.builder().id(requestUsuario.getId().longValue()).name(requestUsuario.getNombres())
                 .lastName(requestUsuario.getApellidos()).address(requestUsuario.getDireccion()).phone(requestUsuario.getTelefono())
-                .rol(Rol.CLIENT).userName(requestUsuario.getNombreUsuario()).password(requestUsuario.getContrasea()).email(requestUsuario.getCorreo()).build();
+                .rol(getRolEnum(requestUsuario.getIdRol())).userName(requestUsuario.getNombreUsuario()).password(requestUsuario.getContrasea()).email(requestUsuario.getCorreo()).build();
         userRepository.save(user);
+
         log.info("Successful user creation");
     }
 
     @Override
     public Usuario searchUser(String nombreUsuario) {
 
-    User user = userRepository.findUsersByUserName(nombreUsuario);
-    Usuario usuarioFinal = new Usuario();
+        User user = userRepository.findUsersByUserName(nombreUsuario);
+        Usuario usuarioFinal = new Usuario();
 
-    if(user != null){
         usuarioFinal.setApellidos(user.getLastName());
         usuarioFinal.setCorreo(user.getEmail());
-        usuarioFinal.setContrasea(user.getPassword());
-        usuarioFinal.setNombreUsuario(user.getUserName());
         usuarioFinal.setDireccion(user.getAddress());
         usuarioFinal.setId(user.getId().intValue());
+        usuarioFinal.setIdRol(getRolID(user.getRol()));
+        usuarioFinal.setNombreUsuario(user.getUserName());
         usuarioFinal.setNombres(user.getName());
         usuarioFinal.setTelefono(user.getPhone());
-    }else{
-        log.info("Usuario no Existe");
+        usuarioFinal.setContrasea(user.getPassword());
+        return usuarioFinal ;
     }
 
-    return usuarioFinal;
+    public Rol getRolEnum (int id) {
+        switch (id){
+            case 2 :
+                return Rol.CLIENT;
+            case 3 :
+                return Rol.SHIPPER;
+            default:
+                return Rol.ADMINISTRATOR;
+        }
+
+    }
+
+    public int getRolID (Rol rolEnum) {
+        switch (rolEnum){
+            case CLIENT:
+                return 2;
+            case SHIPPER:
+                return 3;
+            default:
+                return 1;
+        }
+
     }
 }
