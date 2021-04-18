@@ -36,4 +36,4 @@ mocks:
       resources-path: wiremock/coordinadora
 
 cron:
-  pending_shipping: "*/5 * * * * *"
+  pending_shipping: "0 */3 * * * *"
