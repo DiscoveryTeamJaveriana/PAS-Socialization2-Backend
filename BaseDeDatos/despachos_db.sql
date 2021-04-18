@@ -38,7 +38,7 @@ ALTER TABLE despachos.usuario
 --DROP TABLE despachos.despacho;
 CREATE TABLE despachos.despacho
 (
-    id bigint NOT NULL,
+    id SERIAL NOT NULL,
     cantidad_cajas bigint,
     peso_total numeric,
     estado character varying(20) COLLATE pg_catalog."default",
@@ -62,7 +62,7 @@ ALTER TABLE despachos.despacho
 --DROP TABLE despachos.oferta;
 CREATE TABLE despachos.oferta
 (
-    id bigint NOT NULL,
+    id SERIAL NOT NULL,
     id_despacho bigint,
     id_usuario_transporte bigint,
     oferta numeric,
@@ -85,3 +85,7 @@ TABLESPACE pg_default;
 
 ALTER TABLE despachos.oferta
     OWNER to discoveryteam;
+
+INSERT INTO despachos.usuario (apellidos, correo, direccion, id, rol, nombreusuario, nombres, telefono, contrasena)
+VALUES('coord', 'coord', 'coord', 1, 'SHIPPER', 'Coordinadora', 'coord', '123', '123'),
+      ('tcc', 'tcc', 'tcc', 2, 'SHIPPER', 'TCC', 'tcc', '123', '123');
