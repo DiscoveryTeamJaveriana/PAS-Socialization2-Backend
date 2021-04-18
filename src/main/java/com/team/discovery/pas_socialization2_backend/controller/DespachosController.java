@@ -3,28 +3,37 @@ package com.team.discovery.pas_socialization2_backend.controller;
 import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
-import lombok.AllArgsConstructor;
+import com.team.discovery.pas_socialization2_backend.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@AllArgsConstructor
 @RestController
 @RequestMapping("/javeriana")
 public class DespachosController {
 
+    private IUserService userService;
+
+    @Autowired
+    public DespachosController(IUserService userService) {
+        this.userService = userService;
+    }
+
+
     @PostMapping("/Usuario")
     public ResponseEntity<String> createUser(@RequestBody final Usuario requestUsuario) {
         log.info("Creating User for Id {}", requestUsuario.getId());
+        userService.createUser(requestUsuario);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/Usuario/{nombreUsuario}")
-    public ResponseEntity<String> searchUser(@PathVariable String nombreUsuario) {
+    public ResponseEntity<Usuario> searchUser(@PathVariable String nombreUsuario) {
         log.info("Search User for Username {}", nombreUsuario);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(userService.searchUser(nombreUsuario),HttpStatus.OK);
     }
 
     @GetMapping("/DespachoProveedor")
