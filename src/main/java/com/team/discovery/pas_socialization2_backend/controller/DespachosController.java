@@ -3,7 +3,11 @@ package com.team.discovery.pas_socialization2_backend.controller;
 import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.Offer;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.Shipping;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.User;
+import com.team.discovery.pas_socialization2_backend.repository.OfferRepository;
 import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import com.team.discovery.pas_socialization2_backend.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +23,15 @@ import java.util.List;
 @RequestMapping("/javeriana")
 public class DespachosController {
 
-    private IUserService userService;
-    private IDispatchService dispatchService;
+    private final IUserService userService;
+    private final IDispatchService dispatchService;
+    private final OfferRepository offerRepository;
 
     @Autowired
-    public DespachosController(IUserService userService, IDispatchService dispatchService) {
+    public DespachosController(IUserService userService, IDispatchService dispatchService, OfferRepository offerRepository) {
         this.userService = userService;
         this.dispatchService = dispatchService;
+        this.offerRepository = offerRepository;
     }
 
 
@@ -49,8 +55,14 @@ public class DespachosController {
     }
 
     @PostMapping("/DespachoProveedor/{id}")
-    public ResponseEntity<String> quote(@PathVariable int id, @RequestBody Cotizar requestCotizar) {
+    public ResponseEntity<String> quote(@PathVariable Long id, @RequestBody Cotizar requestCotizar) {
         log.info("Quote for Id dispatch {}", id);
+        Shipping shipping = new Shipping();
+        shipping.setId(id);
+        User usuarioTransporte = new User();
+        usuarioTransporte.setId(requestCotizar.getIdUsuarioTransporte().longValue());
+        Offer offer = Offer.builder().shipping(shipping).userTransport(usuarioTransporte).value(requestCotizar.getOferta()).build();
+        offerRepository.save(offer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
