@@ -8,6 +8,7 @@ import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.User;
 import com.team.discovery.pas_socialization2_backend.repository.DispatchRepository;
 import com.team.discovery.pas_socialization2_backend.repository.OfferRepository;
+import com.team.discovery.pas_socialization2_backend.repository.ShippingRepository;
 import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,12 @@ import java.util.stream.Collectors;
 public class DispatchService implements IDispatchService {
     private DispatchRepository dispatchRepository;
     private OfferRepository offerRepository;
+    private ShippingRepository shippingRepository;
 
-    public DispatchService(DispatchRepository dispatchRepository, OfferRepository offerRepository) {
+    public DispatchService(DispatchRepository dispatchRepository, OfferRepository offerRepository, ShippingRepository shippingRepository) {
         this.dispatchRepository = dispatchRepository;
         this.offerRepository = offerRepository;
+        this.shippingRepository = shippingRepository;
     }
 
     @Override
@@ -49,26 +52,25 @@ public class DispatchService implements IDispatchService {
 
     @Override
     public void createOffer(long id, Cotizar cotizar) {
-        /*Shipping shipping = new Shipping();
+        Shipping shipping = new Shipping();
         shipping.setId(id);
         User usuarioTransporte = new User();
         usuarioTransporte.setId(cotizar.getIdUsuarioTransporte().longValue());
-        Offer offer = Offer.builder().shipping(shipping).userTransport(usuarioTransporte).value(cotizar.getOferta()).build();
-        offerRepository.save(offer);
-        log.info("Successful Offer creation");*/
+        Offer offerSave = Offer.builder().shipping(shipping).userTransport(usuarioTransporte).value(cotizar.getOferta()).build();
+        offerRepository.save(offerSave);
+        log.info("Successful Offer creation");
 
         List<Offer> offers = offerRepository.findAll().stream().filter(offer -> offer.getShipping().getId().intValue() == id).collect(Collectors.toList());
-        Shipping shipping = new Shipping();
         shipping.setBestOffer(0L);
         for (Offer offer : offers){
             if(offer.getValue() > shipping.getBestOffer()){
+                shipping = offer.getShipping();
                 shipping.setBestOffer(offer.getValue().longValue());
                 shipping.setDispatcher(offer.getUserTransport().getName());
             }
         }
-
-        System.out.println(shipping);
-
+        shippingRepository.save(shipping);
+        log.info("Successful Shipping update");
     }
 
 
