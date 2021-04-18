@@ -3,6 +3,8 @@ package com.team.discovery.pas_socialization2_backend.controller;
 import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
+import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import com.team.discovery.pas_socialization2_backend.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/javeriana")
 public class DespachosController {
 
     private IUserService userService;
+    private IDispatchService dispatchService;
 
     @Autowired
-    public DespachosController(IUserService userService) {
+    public DespachosController(IUserService userService, IDispatchService dispatchService) {
         this.userService = userService;
+        this.dispatchService = dispatchService;
     }
 
 
@@ -37,9 +43,9 @@ public class DespachosController {
     }
 
     @GetMapping("/DespachoProveedor")
-    public ResponseEntity<String> searchSupplierDispatch() {
+    public ResponseEntity<List> searchSupplierDispatch() {
         log.info("Search available dispatch");
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(dispatchService.searchDispatches(State.DESPACHO_OFERTADO),HttpStatus.OK);
     }
 
     @PostMapping("/DespachoProveedor/{id}")
