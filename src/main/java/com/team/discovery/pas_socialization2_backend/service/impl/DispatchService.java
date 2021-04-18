@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -48,14 +49,26 @@ public class DispatchService implements IDispatchService {
 
     @Override
     public void createOffer(long id, Cotizar cotizar) {
-        Shipping shipping = new Shipping();
+        /*Shipping shipping = new Shipping();
         shipping.setId(id);
         User usuarioTransporte = new User();
         usuarioTransporte.setId(cotizar.getIdUsuarioTransporte().longValue());
         Offer offer = Offer.builder().shipping(shipping).userTransport(usuarioTransporte).value(cotizar.getOferta()).build();
         offerRepository.save(offer);
+        log.info("Successful Offer creation");*/
 
-        log.info("Successful Offer creation");
+        List<Offer> offers = offerRepository.findAll().stream().filter(offer -> offer.getShipping().getId().intValue() == id).collect(Collectors.toList());
+        Shipping shipping = new Shipping();
+        shipping.setBestOffer(0L);
+        for (Offer offer : offers){
+            if(offer.getValue() > shipping.getBestOffer()){
+                shipping.setBestOffer(offer.getValue().longValue());
+                shipping.setDispatcher(offer.getUserTransport().getName());
+            }
+        }
+
+        System.out.println(shipping);
+
     }
 
 

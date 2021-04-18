@@ -59,7 +59,7 @@ public class DespachosController {
     @PostMapping("/DespachoProveedor/{id}")
     public ResponseEntity<String> quote(@PathVariable long id, @RequestBody Cotizar requestCotizar) {
         log.info("Quote for Id dispatch {}", id);
-
+        dispatchService.createOffer(id, requestCotizar);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
