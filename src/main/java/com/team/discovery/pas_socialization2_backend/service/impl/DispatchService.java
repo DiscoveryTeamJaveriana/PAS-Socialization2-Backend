@@ -43,6 +43,8 @@ public class DispatchService implements IDispatchService {
                 despacho.setPesoTotal(shipping.getTotalWeight().intValue());
                 despacho.setIdEstado(getStateID(shipping.getState()));
                 despacho.setIdUsuarioDestino(shipping.getUser().getId().intValue());
+                despacho.setMejorOferta(shipping.getBestOffer().intValue());
+                despacho.setTransportadora(shipping.getDispatcher());
                 despachos.add(despacho);
             }
         }
