@@ -17,8 +17,8 @@ public class ScheduledPendingShippingQuery {
     @Transactional
     @Scheduled(cron = "${cron.pending_shipping}")
     public void getPendingShipping(){
-        log.info("Starting query");
-        log.info("Finishing query");
+        //log.info("Starting query");
+        //log.info("Finishing query");
     }
 
 }

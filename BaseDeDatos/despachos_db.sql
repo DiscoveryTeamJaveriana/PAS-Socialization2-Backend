@@ -39,12 +39,12 @@ ALTER TABLE despachos.usuario
 CREATE TABLE despachos.despacho
 (
     id bigint NOT NULL,
-    "cantidadCajas" bigint,
-    "pesoTotal" numeric,
+    cantidad_cajas bigint,
+    peso_total numeric,
     estado character varying(20) COLLATE pg_catalog."default",
-    "idUsuarioDestino" bigint,
+    id_usuario_destino bigint,
     CONSTRAINT despacho_pkey PRIMARY KEY (id),
-    CONSTRAINT "idUsuarioDestino" FOREIGN KEY ("idUsuarioDestino")
+    CONSTRAINT id_usuario_destino FOREIGN KEY (id_usuario_destino)
         REFERENCES despachos.usuario (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -63,16 +63,16 @@ ALTER TABLE despachos.despacho
 CREATE TABLE despachos.oferta
 (
     id bigint NOT NULL,
-    "idDespacho" bigint,
-    "idUsuarioTransporte" bigint,
+    id_despacho bigint,
+    id_usuario_transporte bigint,
     oferta numeric,
     CONSTRAINT oferta_pkey PRIMARY KEY (id),
-    CONSTRAINT "idDespacho" FOREIGN KEY ("idDespacho")
+    CONSTRAINT id_despacho FOREIGN KEY (id_despacho)
         REFERENCES despachos.despacho (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT "idUsuarioTransporte" FOREIGN KEY ("idUsuarioTransporte")
+    CONSTRAINT id_usuario_transporte FOREIGN KEY (id_usuario_transporte)
         REFERENCES despachos.usuario (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
