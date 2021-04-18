@@ -25,11 +25,11 @@ public class Offer {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "idDespacho", referencedColumnName = "id")
+    @JoinColumn(name = "id_despacho", referencedColumnName = "id")
     private Shipping shipping;
 
     @OneToOne
-    @JoinColumn(name = "idUsuarioTransporte", referencedColumnName = "id")
+    @JoinColumn(name = "id_usuario_transporte", referencedColumnName = "id")
     private User userTransport;
 
     @Column(name = "oferta")

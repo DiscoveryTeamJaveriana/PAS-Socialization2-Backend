@@ -26,17 +26,17 @@ public class Shipping {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "cantidadCajas")
+    @Column(name = "cantidad_cajas")
     private Long boxesAmount;
 
-    @Column(name = "pesoTotal")
-    private Integer totalWeight;
+    @Column(name = "peso_total")
+    private Double totalWeight;
 
     @Column(name = "estado")
     @Enumerated(EnumType.STRING)
     private State state;
 
     @OneToOne
-    @JoinColumn(name = "idUsuarioDestino", referencedColumnName = "id")
+    @JoinColumn(name = "id_usuario_destino", referencedColumnName = "id")
     private User user;
 }
