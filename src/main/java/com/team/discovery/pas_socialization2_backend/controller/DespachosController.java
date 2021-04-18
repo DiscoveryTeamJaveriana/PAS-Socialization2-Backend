@@ -2,8 +2,10 @@ package com.team.discovery.pas_socialization2_backend.controller;
 
 import com.team.discovery.pas_socialization2_backend.controller.model.Aprobar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
+import com.team.discovery.pas_socialization2_backend.controller.model.Despacho;
 import com.team.discovery.pas_socialization2_backend.controller.model.Usuario;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
+import com.team.discovery.pas_socialization2_backend.service.IClientService;
 import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import com.team.discovery.pas_socialization2_backend.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +23,13 @@ public class DespachosController {
 
     private IUserService userService;
     private IDispatchService dispatchService;
+    private IClientService clientService;
 
     @Autowired
-    public DespachosController(IUserService userService, IDispatchService dispatchService) {
+    public DespachosController(IUserService userService, IDispatchService dispatchService,IClientService clientService ) {
         this.userService = userService;
         this.dispatchService = dispatchService;
+        this.clientService = clientService;
     }
 
 
@@ -55,9 +59,9 @@ public class DespachosController {
     }
 
     @GetMapping("/DespachoCliente/{idUsuarioDestino}")
-    public ResponseEntity<String> searchDispatchClient(@PathVariable int idUsuarioDestino) {
+    public ResponseEntity<List<Despacho>> searchDispatchClient(@PathVariable int idUsuarioDestino) {
         log.info("Search available dispatch for User ID {}", idUsuarioDestino);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.searchDispatchClient(idUsuarioDestino),HttpStatus.OK);
     }
 
     @PostMapping("/DespachoCliente")
