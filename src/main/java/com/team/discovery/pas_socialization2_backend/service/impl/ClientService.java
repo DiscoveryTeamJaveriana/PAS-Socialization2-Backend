@@ -32,7 +32,7 @@ public class ClientService implements IClientService {
 
         List<Shipping> shippings = shippingRepository.findShippingsByUserAndState(user,State.DESPACHO_POR_APROBAR);
         List<Despacho> despachos = new ArrayList<>();
-        if (despachos.isEmpty()) {
+        if (!shippings.isEmpty()) {
 
             for (Shipping shipping : shippings) {
                 Despacho despacho = new Despacho();
@@ -67,8 +67,29 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public ArrayList<Despacho> searchHistoricalDispatch(int id) {
-        return null;
+    public List<Despacho> searchHistoricalDispatch(int id) {
+        User user = User.builder().id((long) id).build();
+        List<Shipping> shippings = shippingRepository.findShippingsByUserAndState(user,State.DESPACHO_APROBADO);
+        List<Despacho> despachos = new ArrayList<>();
+        if (!shippings.isEmpty()) {
+
+            for (Shipping shipping : shippings) {
+                Despacho despacho = new Despacho();
+                despacho.setId(shipping.getId().intValue());
+                despacho.setCantidadCajas(shipping.getBoxesAmount().intValue());
+                despacho.setPesoTotal(shipping.getTotalWeight().intValue());
+                despacho.setIdEstado(getStateID(shipping.getState()));
+                despacho.setIdUsuarioDestino(shipping.getUser().getId().intValue());
+                despacho.setMejorOferta(shipping.getBestOffer().intValue());
+                despacho.setTransportadora(shipping.getDispatcher());
+                despachos.add(despacho);
+            }
+
+        }else {
+            log.info("Usuario no tiene despachos en el historico");
+        }
+
+        return despachos;
     }
 
     public State getStateEnum(int id) {
