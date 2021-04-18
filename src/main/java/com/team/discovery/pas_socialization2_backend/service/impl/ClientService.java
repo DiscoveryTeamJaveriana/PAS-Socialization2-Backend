@@ -16,11 +16,11 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class ClienteService implements IClientService {
+public class ClientService implements IClientService {
 
     private ShippingRepository shippingRepository;
 
-    public ClienteService(ShippingRepository shippingRepository) {
+    public ClientService(ShippingRepository shippingRepository) {
         this.shippingRepository = shippingRepository;
     }
 
@@ -40,9 +40,8 @@ public class ClienteService implements IClientService {
                 despacho.setPesoTotal(shipping.getTotalWeight().intValue());
                 despacho.setIdEstado(getStateID(shipping.getState()));
                 despacho.setIdUsuarioDestino(shipping.getUser().getId().intValue());
-                despacho.setMejorOferta(1231);
-                despacho.setTransportadora("TCC");
-
+                despacho.setMejorOferta(shipping.getBestOffer().intValue());
+                despacho.setTransportadora(shipping.getDispatcher());
                 despachos.add(despacho);
             }
 
