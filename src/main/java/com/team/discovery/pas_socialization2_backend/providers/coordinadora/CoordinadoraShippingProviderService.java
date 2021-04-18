@@ -9,12 +9,16 @@ import com.team.discovery.pas_socialization2_backend.providers.coordinadora.serv
 import com.team.discovery.pas_socialization2_backend.providers.coordinadora.service.Shipping_wsStub;
 import com.team.discovery.pas_socialization2_backend.service.IShippingProvider;
 import org.apache.axis2.AxisFault;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CoordinadoraShippingProviderService implements IShippingProvider {
 
     Shipping_ws shippingWs;
+
+    @Value("${providers.coordinadora.url}")
+    String url;
 
     @Override
     public Integer getOffer(Shipping shipping) {
@@ -40,6 +44,6 @@ public class CoordinadoraShippingProviderService implements IShippingProvider {
     }
 
     private void buildConnection() throws AxisFault {
-        shippingWs = new Shipping_wsStub();
+        shippingWs = new Shipping_wsStub(url);
     }
 }

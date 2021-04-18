@@ -21,7 +21,7 @@ providers:
   tcc:
     url: http://localhost:10018/
   coordinadora:
-    url: http://localhost:10019/
+    url: http://localhost:10019/shipping
 
 mocks:
   enabled: true
