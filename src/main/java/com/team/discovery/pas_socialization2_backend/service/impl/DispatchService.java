@@ -1,9 +1,13 @@
 package com.team.discovery.pas_socialization2_backend.service.impl;
 
+import com.team.discovery.pas_socialization2_backend.controller.model.Cotizar;
 import com.team.discovery.pas_socialization2_backend.controller.model.Despacho;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.Offer;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.Shipping;
 import com.team.discovery.pas_socialization2_backend.model.despachos_db.State;
+import com.team.discovery.pas_socialization2_backend.model.despachos_db.User;
 import com.team.discovery.pas_socialization2_backend.repository.DispatchRepository;
+import com.team.discovery.pas_socialization2_backend.repository.OfferRepository;
 import com.team.discovery.pas_socialization2_backend.service.IDispatchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,9 +19,11 @@ import java.util.List;
 @Service
 public class DispatchService implements IDispatchService {
     private DispatchRepository dispatchRepository;
+    private OfferRepository offerRepository;
 
-    public DispatchService (DispatchRepository dispatchRepository) {
+    public DispatchService(DispatchRepository dispatchRepository, OfferRepository offerRepository) {
         this.dispatchRepository = dispatchRepository;
+        this.offerRepository = offerRepository;
     }
 
     @Override
@@ -39,6 +45,19 @@ public class DispatchService implements IDispatchService {
 
         return despachos;
     }
+
+    @Override
+    public void createOffer(long id, Cotizar cotizar) {
+        Shipping shipping = new Shipping();
+        shipping.setId(id);
+        User usuarioTransporte = new User();
+        usuarioTransporte.setId(cotizar.getIdUsuarioTransporte().longValue());
+        Offer offer = Offer.builder().shipping(shipping).userTransport(usuarioTransporte).value(cotizar.getOferta()).build();
+        offerRepository.save(offer);
+
+        log.info("Successful Offer creation");
+    }
+
 
     public State getStateEnum(int id) {
         switch (id) {
