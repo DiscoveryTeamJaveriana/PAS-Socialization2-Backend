@@ -14,7 +14,7 @@
 <name>PAS-Socialization2-Backend</name>
 <description>2nd Socialization backend for Patterns of Software</description>
 <properties>
-	<java.version>11</java.version>
+	<java.version>1.8</java.version>
 	<axis2.version>1.7.9</axis2.version>
 </properties>
 <dependencies>
@@ -39,6 +39,11 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-configuration-processor</artifactId>
 		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>3.2.8.RELEASE</version>
 	</dependency>
 
 	<!-- Mock -->
