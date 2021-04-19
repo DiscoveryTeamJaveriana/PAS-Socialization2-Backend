@@ -89,5 +89,5 @@ ALTER TABLE despachos.oferta
     OWNER to discoveryteam;
 
 INSERT INTO despachos.usuario (apellidos, correo, direccion, id, rol, nombreusuario, nombres, telefono, contrasena)
-VALUES('coord', 'coord', 'coord', 1, 'SHIPPER', 'Coordinadora', 'coord', '123', '123'),
-      ('tcc', 'tcc', 'tcc', 2, 'SHIPPER', 'TCC', 'tcc', '123', '123');
+VALUES('Coordinadora', 'Coordinadora', 'Coordinadora', 1, 'SHIPPER', 'Coordinadora', 'Coordinadora', '123', '123'),
+      ('TCC', 'TCC', 'TCC', 2, 'SHIPPER', 'TCC', 'TCC', '123', '123');
