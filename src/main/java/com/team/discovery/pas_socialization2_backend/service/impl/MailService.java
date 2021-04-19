@@ -68,8 +68,6 @@ public class MailService implements IMailService {
      */
     @Override
     public void send(String to, String subject, String text, File... attachments) {
-        //String to = "oj-gomez@javeriana.edu.co";
-        //String subject = "Prueba Mail";
         String msg = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n" +
                 "<head>\n" +
@@ -202,7 +200,7 @@ public class MailService implements IMailService {
                 "  <tr>\n" +
                 "    <td style=\"padding-right: 0px;padding-left: 0px;\" align=\"center\">\n" +
                 "      <a href=\"https://example.com\" target=\"_blank\">\n" +
-                "      <img align=\"center\" border=\"0\" src=\"images/image-4.png\" alt=\"Image\" title=\"Image\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 63%;max-width: 124.11px;\" width=\"124.11\"/>\n" +
+                "      <img align=\"center\" border=\"0\" src=\"https://lh3.googleusercontent.com/oV-gmHasnFoB0Be6IClcoxLXlkw1qzyQRqXJjKcuRabTjrmJ9CmcTLlrI6sJ8F8_hlOd=s170\" alt=\"Image\" title=\"Image\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 63%;max-width: 124.11px;\" width=\"124.11\"/>\n" +
                 "      </a>\n" +
                 "    </td>\n" +
                 "  </tr>\n" +
@@ -358,8 +356,8 @@ public class MailService implements IMailService {
                 "\n" +
                 "<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n" +
                 "  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 650px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;\">\n" +
-                "    <div style=\"border-collapse: collapse;display: table;width: 100%;background-image: url('images/image-8.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;\">\n" +
-                "      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:650px;\"><tr style=\"background-image: url('images/image-8.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;\"><![endif]-->\n" +
+                "    <div style=\"border-collapse: collapse;display: table;width: 100%;background-image: url('https://lh3.googleusercontent.com/6lYTeppMAJEio6e-GSD3438q4-7UbbC6-rBJ6jQwKos9Tt-MibbFRaiysQBJI4nLhPkI5JI=s170');background-repeat: no-repeat;background-position: center top;background-color: transparent;\">\n" +
+                "      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:650px;\"><tr style=\"background-image: url('https://lh3.googleusercontent.com/6lYTeppMAJEio6e-GSD3438q4-7UbbC6-rBJ6jQwKos9Tt-MibbFRaiysQBJI4nLhPkI5JI=s170');background-repeat: no-repeat;background-position: center top;background-color: transparent;\"><![endif]-->\n" +
                 "      \n" +
                 "<!--[if (mso)|(IE)]><td align=\"center\" width=\"650\" style=\"width: 650px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;\" valign=\"top\"><![endif]-->\n" +
                 "<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 650px;display: table-cell;vertical-align: top;\">\n" +
@@ -505,8 +503,8 @@ public class MailService implements IMailService {
                 "\n" +
                 "<div class=\"u-row-container\" style=\"padding: 0px;background-color: transparent\">\n" +
                 "  <div class=\"u-row\" style=\"Margin: 0 auto;min-width: 320px;max-width: 650px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;\">\n" +
-                "    <div style=\"border-collapse: collapse;display: table;width: 100%;background-image: url('images/image-7.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;\">\n" +
-                "      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:650px;\"><tr style=\"background-image: url('images/image-7.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;\"><![endif]-->\n" +
+                "    <div style=\"border-collapse: collapse;display: table;width: 100%;background-image: url('https://i0.wp.com/odsdanismanlik.com/wp-content/uploads/2020/06/sea1920x1080.jpg?resize=400%2C250&ssl=1');background-repeat: no-repeat;background-position: center top;background-color: transparent;\">\n" +
+                "      <!--[if (mso)|(IE)]><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"padding: 0px;background-color: transparent;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:650px;\"><tr style=\"background-image: url('https://i0.wp.com/odsdanismanlik.com/wp-content/uploads/2020/06/sea1920x1080.jpg?resize=400%2C250&ssl=1');background-repeat: no-repeat;background-position: center top;background-color: transparent;\"><![endif]-->\n" +
                 "      \n" +
                 "<!--[if (mso)|(IE)]><td align=\"center\" width=\"650\" style=\"width: 650px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;\" valign=\"top\"><![endif]-->\n" +
                 "<div class=\"u-col u-col-100\" style=\"max-width: 320px;min-width: 650px;display: table-cell;vertical-align: top;\">\n" +
@@ -742,8 +740,8 @@ public class MailService implements IMailService {
                 "    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 20px;\" valign=\"top\"><![endif]-->\n" +
                 "    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n" +
                 "      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n" +
-                "        <a href=\" \" title=\"Facebook\" target=\"_blank\">\n" +
-                "          <img src=\"images/image-2.png\" alt=\"Facebook\" title=\"Facebook\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
+                "        <a href='facebook.com' title=\"Facebook\" target=\"_blank\">\n" +
+                "          <img src=\"https://cdn.shortpixel.ai/client/q_glossy,ret_img/https://nmsproductions.com/wp-content/uploads/2020/06/facebook-01.png\" alt=\"Facebook\" title=\"Facebook\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
                 "        </a>\n" +
                 "      </td></tr>\n" +
                 "    </tbody></table>\n" +
@@ -753,7 +751,7 @@ public class MailService implements IMailService {
                 "    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n" +
                 "      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n" +
                 "        <a href=\" \" title=\"Twitter\" target=\"_blank\">\n" +
-                "          <img src=\"cid:image1\" alt=\"Twitter\" title=\"Twitter\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
+                "          <img src=\"https://www.roguecc.edu/_assets/2020-home/images/social/Twitter.png\" alt=\"Twitter\" title=\"Twitter\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
                 "        </a>\n" +
                 "      </td></tr>\n" +
                 "    </tbody></table>\n" +
@@ -763,7 +761,7 @@ public class MailService implements IMailService {
                 "    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n" +
                 "      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n" +
                 "        <a href=\" \" title=\"WhatsApp\" target=\"_blank\">\n" +
-                "          <img src=\"images/image-6.png\" alt=\"WhatsApp\" title=\"WhatsApp\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
+                "          <img src=\"http://www.pkbmmubarok.org/icon/wa.png\" alt=\"WhatsApp\" title=\"WhatsApp\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
                 "        </a>\n" +
                 "      </td></tr>\n" +
                 "    </tbody></table>\n" +
@@ -773,7 +771,7 @@ public class MailService implements IMailService {
                 "    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 20px\">\n" +
                 "      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n" +
                 "        <a href=\" \" title=\"Pinterest\" target=\"_blank\">\n" +
-                "          <img src=\"images/image-3.png\" alt=\"Pinterest\" title=\"Pinterest\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
+                "          <img src=\"https://www.womenshealth.gov/sites/all/themes/womenshealth/images/owh_pinterest_icon.png\" alt=\"Pinterest\" title=\"Pinterest\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
                 "        </a>\n" +
                 "      </td></tr>\n" +
                 "    </tbody></table>\n" +
@@ -783,7 +781,7 @@ public class MailService implements IMailService {
                 "    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px\">\n" +
                 "      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n" +
                 "        <a href=\" \" title=\"YouTube\" target=\"_blank\">\n" +
-                "          <img src=\"images/image-5.png\" alt=\"YouTube\" title=\"YouTube\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
+                "          <img src=\"https://d33z52hfhvk3mr.cloudfront.net/public/img/Footer_Youtube.png?_v=10550b6\" alt=\"YouTube\" title=\"YouTube\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n" +
                 "        </a>\n" +
                 "      </td></tr>\n" +
                 "    </tbody></table>\n" +

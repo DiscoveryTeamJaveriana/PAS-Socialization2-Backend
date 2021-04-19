@@ -61,7 +61,7 @@ public class DispatchService implements IDispatchService {
 
     @Override
     public void createOffer(long id, Cotizar cotizar) {
-        /*Shipping shipping = new Shipping();
+        Shipping shipping = new Shipping();
         shipping.setId(id);
         User usuarioTransporte = new User();
         usuarioTransporte.setId(cotizar.getIdUsuarioTransporte().longValue());
@@ -80,15 +80,15 @@ public class DispatchService implements IDispatchService {
             }
         }
         shippingRepository.save(shipping);
-        log.info("Successful Shipping update");*/
+        log.info("Successful Shipping update");
 
-        try {
+        /*try {
             mailService.send("oj-gomez@javeriana.edu.co", "Test de envío de email.", "Prueba del envío de correo electrónico.");
             log.trace("Envio de test Correcto.");
         }
         catch(Exception e){
             log.trace("Excepción controlada, normal en el entorno de test",e);
-        }
+        }*/
 
     }
 
