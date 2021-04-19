@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns="http://www.example.com/wsdl/shipping.wsdl"
+                  targetNamespace="http://www.example.com/wsdl/shipping.wsdl">
+    <wsdl:types>
+        <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.example.com/wsdl/shipping.wsdl">
+            <xsd:element name="shippingInput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" name="address" type="xsd:string"/>
+                        <xsd:element minOccurs="1" name="boxesAmount" type="xsd:long"/>
+                        <xsd:element minOccurs="1" name="totalWeight" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="shippingOutput">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" name="value" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="shippingRequest">
+        <wsdl:part name="parameters" element="ns:shippingInput"/>
+    </wsdl:message>
+
+    <wsdl:message name="shippingResponse">
+        <wsdl:part name="response" element="ns:shippingOutput"/>
+    </wsdl:message>
+
+    <wsdl:portType name="shippingPortType">
+        <wsdl:operation name="calculate">
+            <wsdl:input message="ns:shippingRequest"/>
+            <wsdl:output message="ns:shippingResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="shippingBinding" type="ns:shippingPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="calculate">
+            <soap:operation style="document" soapAction="ns:calculate"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="shipping_ws">
+        <wsdl:port name="shippingPort" binding="ns:shippingBinding">
+            <soap:address location="http://localhost:10019/shipping"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

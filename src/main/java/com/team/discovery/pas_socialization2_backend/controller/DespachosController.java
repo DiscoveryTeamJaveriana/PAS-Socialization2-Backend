@@ -23,6 +23,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/javeriana")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DespachosController {
 
     private IUserService userService;

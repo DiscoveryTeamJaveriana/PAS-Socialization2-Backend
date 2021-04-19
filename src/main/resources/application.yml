@@ -21,17 +21,17 @@ providers:
   tcc:
     url: http://localhost:10018/
   coordinadora:
-    url: http://localhost:10019/
+    url: http://localhost:10019/shipping
 
 mocks:
-  enabled: false
+  enabled: true
   services:
     tcc:
-      enabled: false
+      enabled: true
       port: 10018
       resources-path: wiremock/tcc
     coordinadora:
-      enabled: false
+      enabled: true
       port: 10019
       resources-path: wiremock/coordinadora
 

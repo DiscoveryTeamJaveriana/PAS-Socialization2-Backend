@@ -40,12 +40,17 @@ public class DispatchService implements IDispatchService {
         if (shippings != null){
             for (Shipping shipping : shippings){
                 Despacho despacho = new Despacho();
-                despacho.setId(shipping.getId().intValue());
-                despacho.setCantidadCajas(shipping.getBoxesAmount().intValue());
-                despacho.setPesoTotal(shipping.getTotalWeight().intValue());
+                despacho.setId(shipping.getId() != null ?
+                        shipping.getId().intValue() : null);
+                despacho.setCantidadCajas(shipping.getBoxesAmount() != null ?
+                        shipping.getBoxesAmount().intValue() : null);
+                despacho.setPesoTotal(shipping.getTotalWeight() != null ?
+                        shipping.getTotalWeight().intValue() : null);
                 despacho.setIdEstado(getStateID(shipping.getState()));
-                despacho.setIdUsuarioDestino(shipping.getUser().getId().intValue());
-                despacho.setMejorOferta(shipping.getBestOffer().intValue());
+                despacho.setIdUsuarioDestino(shipping.getUser().getId() != null ?
+                        shipping.getUser().getId().intValue() : null);
+                despacho.setMejorOferta(shipping.getBestOffer() != null ?
+                        shipping.getBestOffer().intValue() : null);
                 despacho.setTransportadora(shipping.getDispatcher());
                 despachos.add(despacho);
             }

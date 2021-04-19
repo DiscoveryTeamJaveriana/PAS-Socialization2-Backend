@@ -1,0 +1,16 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPattern": "/shipping/price",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$..[?(@.boxes != null && @.weight != null && @.address != null)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "response/TCCResponse.json"
+  }
+}
