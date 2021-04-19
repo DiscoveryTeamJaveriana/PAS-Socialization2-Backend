@@ -23,11 +23,13 @@ public class DispatchService implements IDispatchService {
     private DispatchRepository dispatchRepository;
     private OfferRepository offerRepository;
     private ShippingRepository shippingRepository;
+    private MailService mailService;
 
-    public DispatchService(DispatchRepository dispatchRepository, OfferRepository offerRepository, ShippingRepository shippingRepository) {
+    public DispatchService(DispatchRepository dispatchRepository, OfferRepository offerRepository, ShippingRepository shippingRepository, MailService mailService) {
         this.dispatchRepository = dispatchRepository;
         this.offerRepository = offerRepository;
         this.shippingRepository = shippingRepository;
+        this.mailService = mailService;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class DispatchService implements IDispatchService {
 
     @Override
     public void createOffer(long id, Cotizar cotizar) {
-        Shipping shipping = new Shipping();
+        /*Shipping shipping = new Shipping();
         shipping.setId(id);
         User usuarioTransporte = new User();
         usuarioTransporte.setId(cotizar.getIdUsuarioTransporte().longValue());
@@ -72,9 +74,17 @@ public class DispatchService implements IDispatchService {
             }
         }
         shippingRepository.save(shipping);
-        log.info("Successful Shipping update");
-    }
+        log.info("Successful Shipping update");*/
 
+        try {
+            mailService.send("oj-gomez@javeriana.edu.co", "Test de envío de email.", "Prueba del envío de correo electrónico.");
+            log.trace("Envio de test Correcto.");
+        }
+        catch(Exception e){
+            log.trace("Excepción controlada, normal en el entorno de test",e);
+        }
+
+    }
 
     public State getStateEnum(int id) {
         switch (id) {
