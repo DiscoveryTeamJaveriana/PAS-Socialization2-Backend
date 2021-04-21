@@ -82,13 +82,15 @@ public class DispatchService implements IDispatchService {
         shippingRepository.save(shipping);
         log.info("Successful Shipping update");
 
-        /*try {
-            mailService.send("oj-gomez@javeriana.edu.co", "Test de envío de email.", "Prueba del envío de correo electrónico.");
-            log.trace("Envio de test Correcto.");
+        List<Shipping> shippings = shippingRepository.findAll().stream().filter(shipping1 -> shipping1.getId().intValue() == id).collect(Collectors.toList());
+
+        try {
+            mailService.send(shippings.get(0).getUser().getEmail(), "Completa tu Despacho.");
+            log.info("Envio de test Correcto.");
         }
         catch(Exception e){
-            log.trace("Excepción controlada, normal en el entorno de test",e);
-        }*/
+            log.info("Excepción controlada, normal en el entorno de test",e);
+        }
 
     }
 
